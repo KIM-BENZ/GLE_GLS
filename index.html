@@ -647,6 +647,9 @@
       box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
     }
 
+    .int-pair{display:grid;grid-template-rows:1fr 1fr;gap:1rem}
+    .int-pair .color-preview-box{height:132px}
+    @media(max-width:900px){.int-pair{grid-template-rows:none;grid-template-columns:1fr 1fr}.int-pair .color-preview-box{height:160px}}
     .color-preview-box img {
       object-fit: contain;
       background-color: #0b0c0e;
@@ -1231,6 +1234,55 @@
     .spec-sub{font-size:.78rem;color:var(--mb-silver);font-weight:400}
     @media(max-width:992px){.charge-stats{grid-template-columns:repeat(2,1fr)}.price-grid{grid-template-columns:1fr}}
     @media(max-width:650px){.wheel-grid.two{grid-template-columns:1fr}.hero-overlay h2{font-size:1.5rem}}
+
+    .model-tabs{display:flex;gap:.6rem;margin:2rem 0 0;position:sticky;top:58px;z-index:90;padding:.6rem 0;background:rgba(8,8,10,.95)}
+    .model-tabs button{flex:1;padding:.9rem 1rem;border:1px solid var(--mb-border);border-radius:12px;background:var(--mb-card-bg);color:var(--mb-silver);font-size:1.05rem;font-weight:700;cursor:pointer;transition:.2s}
+    .model-tabs button small{display:block;font-weight:400;font-size:.75rem;margin-top:.1rem}
+    .model-tabs button.on{border-color:var(--mb-accent);color:#fff;background:rgba(0,173,239,.12)}
+    [data-m].m-hide{display:none!important}
+
+
+    .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;pointer-events:none;background:transparent}
+    .hv-bg{display:none}
+    @media(min-width:900px){
+      .hero{height:78vh;min-height:560px;max-height:820px}
+      .hv-bg{display:block;object-fit:cover;filter:blur(24px) brightness(.5);transform:scale(1.2)}
+      .hv-fg{--hv-ar:1/1;left:50%;width:auto;aspect-ratio:var(--hv-ar);transform:translateX(-50%);object-fit:cover;object-position:center 46%;
+        -webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 12%,#000 88%,transparent 100%)}
+    }
+    @media(prefers-reduced-motion:reduce){.hero-video{display:none}}
+
+    .cmp-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+    .cmp-photos figure{margin:0}
+    .cmp-photos figcaption{text-align:center;margin-top:.5rem;font-weight:700;color:var(--mb-silver)}
+    .cmp-photos .img-wrapper{aspect-ratio:16/10}
+    .body-toggle{display:flex;align-items:center;gap:.5rem;margin:0 0 1.2rem}
+    .body-toggle span{color:var(--mb-silver);font-size:.9rem;margin-right:.4rem}
+    .body-toggle button{padding:.55rem 1.1rem;border:1px solid var(--mb-border);border-radius:999px;background:var(--mb-card-bg);color:var(--mb-silver);font-weight:700;cursor:pointer}
+    .body-toggle button.on{border-color:var(--mb-accent);color:#fff;background:rgba(0,173,239,.12)}
+    [data-b].b-hide{display:none!important}
+    @media(max-width:600px){.cmp-photos{grid-template-columns:1fr}}
+
+    .gl-ext{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+    .gl-ext h4{background:#000;border:1px solid var(--mb-border);text-align:center;padding:.7rem;font-size:1rem;letter-spacing:1px;margin-bottom:.6rem;border-radius:8px}
+    .gl-ext .img-wrapper{aspect-ratio:2/1;margin-bottom:.6rem}
+    .gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    .gl-card{background:var(--mb-card-bg);border:1px solid var(--mb-border);border-radius:14px;padding:1.2rem;display:flex;flex-direction:column;gap:.9rem}
+    .gl-card h3{font-size:1.1rem}
+    .gl-car{aspect-ratio:16/9}
+    .gl-rows{list-style:none;display:flex;flex-direction:column}
+    .gl-rows li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px solid var(--mb-border);font-size:.92rem}
+    .gl-rows li span:first-child{color:var(--mb-silver)}
+    .gl-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+    .gl-thumbs figure{margin:0}
+    .gl-thumbs .img-wrapper{aspect-ratio:16/10}
+    .gl-thumbs figcaption{text-align:center;font-size:.78rem;color:var(--mb-silver);margin-top:.3rem;line-height:1.35}
+    @media(max-width:700px){.gl-ext,.gl-grid{grid-template-columns:1fr}}
+
+    .gl-ext-wrap{position:relative}
+    .gl-badge{position:absolute;top:10px;left:10px;width:86px;height:86px;border-radius:50%;overflow:hidden;border:2px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.6);z-index:3;background:#22252b}
+    .gl-badge img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+    @media(max-width:700px){.gl-badge{width:70px;height:70px}}
 </style>
 </head>
 <body>
@@ -1244,6 +1296,8 @@
 
   <section class="hero">
     <img src="images/hero-main.jpg" alt="THE NEW GLE & GLS" class="hero-img clickable-img" onerror="this.style.display='none'">
+    <video class="hero-video hv-bg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="images/hero-video.mp4" type="video/mp4"></video>
+    <video class="hero-video hv-fg" autoplay muted loop playsinline preload="metadata" poster="images/hero-main.jpg" aria-hidden="true"><source src="images/hero-video.mp4" type="video/mp4"></video>
     <div class="hero-gradient-overlay"></div>
     <div class="hero-overlay">
       <h2>THE NEW GLE · GLE COUPÉ · GLS (MY27)</h2>
@@ -1252,6 +1306,11 @@
   </section>
 
   <main class="container">
+
+    <nav class="model-tabs" id="modelTabs" aria-label="모델 선택">
+      <button type="button" data-tab="gle" class="on">GLE · GLE 쿠페<small>SUV · COUPÉ</small></button>
+      <button type="button" data-tab="gls">GLS<small>6인승 · 7인승</small></button>
+    </nav>
 
     <section class="brand-quote">
       <p>"가격은 같습니다. 사람이 다릅니다.<br>
@@ -1278,25 +1337,45 @@
       <div class="top-detail-card"><div class="img-placeholder img-wrapper"><span>[사진: 에어매틱 서스펜션]</span><img src="images/detail-airmatic.jpg" alt="에어매틱 서스펜션" class="clickable-img" onerror="this.style.display='none'"></div><div class="top-detail-info"><h4>에어매틱 서스펜션</h4></div></div>
     </section>
 
-    <section id="lineup" class="lineup-section">
+    <section id="lineup" data-m="gle" class="lineup-section">
       <div class="section-title-wrap"><span class="section-tag">MODEL LINEUP (MY27)</span><h2 class="section-title">국내 라인업</h2></div>
       <div class="lineup-container">
-        <div class="lineup-card active-target"><div><span class="lineup-badge target">SUV</span><h3>GLE 450 4MATIC AMG Line</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외관 <span>AMG 바디스타일링</span></li><li>휠 <span>21″ AMG 5 트윈 스포크</span></li><li>시트 <span>가죽 · 뒷좌석 전동 조절</span></li><li>서스펜션 <span>에어매틱</span></li><li>루프 <span>파노라믹 선루프</span></li></ul></div>
-        <div class="lineup-card"><div><span class="lineup-badge target">COUPÉ</span><h3>GLE 450 4MATIC Coupé</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외관 <span>AMG 바디스타일링</span></li><li>휠 <span>21″ AMG 5 트윈 스포크</span></li><li>시트 <span>나파 가죽 · 스포츠 시트 적용</span></li><li>서스펜션 <span>에어매틱</span></li><li>루프 <span>파노라믹 선루프</span></li></ul></div>
-        <div class="lineup-card"><div><span class="lineup-badge target">GLS</span><h3>GLS 450 4MATIC</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외장 <span>스탠다드 · 발광 그릴</span></li><li>휠 <span>21″ 텐홀 디자인</span></li><li>좌석 <span>7인승 / 6인승 독립 시트</span></li><li>서스펜션 <span>에어매틱</span></li><li>뒷좌석 <span>MBUX 엔터테인먼트</span></li></ul></div>
-        <div class="lineup-card"><div><span class="lineup-badge target">GLS</span><h3>GLS 450 4MATIC AMG Line</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외장 <span>AMG Line · 발광 그릴</span></li><li>휠 <span>22″ AMG 멀티 스포크</span></li><li>좌석 <span>7인승 / 6인승 독립 시트</span></li><li>스티어링 <span>다기능 스포츠 스티어링 휠</span></li><li>뒷좌석 <span>MBUX 엔터테인먼트</span></li></ul></div>
+        <div class="lineup-card active-target" data-m="gle"><div><span class="lineup-badge target">SUV</span><h3>GLE 450 4MATIC AMG Line</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외관 <span>AMG Line</span></li><li>휠 <span>21″ AMG 5 트윈 스포크</span></li><li>시트 <span>가죽 · 뒷좌석 전동 조절</span></li><li>서스펜션 <span>에어매틱</span></li><li>루프 <span>파노라믹 선루프</span></li></ul></div>
+        <div class="lineup-card" data-m="gle"><div><span class="lineup-badge target">COUPÉ</span><h3>GLE 450 4MATIC Coupé</h3><p class="lineup-price">가격 미정</p></div><ul class="lineup-specs"><li>외관 <span>AMG Line</span></li><li>휠 <span>21″ AMG 5 트윈 스포크</span></li><li>시트 <span>나파 가죽</span></li><li>서스펜션 <span>에어매틱</span></li><li>루프 <span>파노라믹 선루프</span></li></ul></div>
       </div>
     </section>
 
-    <section class="lineup-section">
-      <div class="section-title-wrap"><span class="section-tag">GLE SUV vs COUPÉ</span><h2 class="section-title">GLE SUV와 쿠페, 무엇이 다를까</h2></div>
-      <div class="table-wrapper"><table><thead><tr><th>구분</th><th>GLE 450 SUV</th><th>GLE 450 쿠페</th></tr></thead><tbody><tr><td>외관·기본 휠</td><td>AMG Line · 21″ AMG 5 트윈 스포크</td><td>AMG 바디스타일링 · 21″ AMG 5 트윈 스포크</td></tr><tr><td>시트 소재</td><td>가죽</td><td>나파 가죽</td></tr><tr><td>스포츠 시트 패키지</td><td>미적용</td><td>기본</td></tr><tr><td>뒷좌석 전동 조절</td><td>기본</td><td>미적용</td></tr><tr><td>뒷좌석 열선</td><td>기본</td><td>기본</td></tr><tr><td>서스펜션</td><td>에어매틱</td><td>에어매틱</td></tr><tr><td>내장 선택</td><td>블랙 / 비치 브라운·블랙 / 마키아토 베이지·블랙</td><td>블랙 / 비치 브라운·블랙 / 투톤 화이트·블랙 / 클래식 레드·블랙</td></tr></tbody></table></div>
+        <section id="lineup-gls" data-m="gls" class="lineup-section">
+      <div class="section-title-wrap"><span class="section-tag">GLS LINEUP (MY27)</span><h2 class="section-title">GLS 라인업</h2></div>
+      <div class="gl-grid"><div class="gl-card"><h3>GLS 450 4MATIC</h3><div class="img-placeholder img-wrapper gl-car"><span>[사진: GLS 450 4MATIC]</span><img src="images/gls-lineup-450-7.jpg" alt="GLS 450 4MATIC" class="clickable-img" onerror="this.style.display='none'"></div><ul class="gl-rows"><li><span>외장</span><span>스탠다드</span></li><li><span>내장</span><span>가죽</span></li><li><span>휠</span><span>21″ 텐홀 디자인</span></li></ul></div><div class="gl-card"><h3>GLS 450 4MATIC 6인승</h3><div class="img-placeholder img-wrapper gl-car"><span>[사진: GLS 450 4MATIC 6인승]</span><img src="images/gls-lineup-450-6.jpg" alt="GLS 450 4MATIC 6인승" class="clickable-img" onerror="this.style.display='none'"></div><ul class="gl-rows"><li><span>외장</span><span>스탠다드</span></li><li><span>내장</span><span>가죽 · 6인승</span></li><li><span>휠</span><span>21″ 텐홀 디자인</span></li></ul></div><div class="gl-card"><h3>GLS 450 4MATIC AMG Line</h3><div class="img-placeholder img-wrapper gl-car"><span>[사진: GLS 450 4MATIC AMG Line]</span><img src="images/gls-lineup-amg-7.jpg" alt="GLS 450 4MATIC AMG Line" class="clickable-img" onerror="this.style.display='none'"></div><ul class="gl-rows"><li><span>외장</span><span>AMG Line</span></li><li><span>내장</span><span>가죽</span></li><li><span>휠</span><span>22″ AMG 멀티 스포크</span></li></ul></div><div class="gl-card"><h3>GLS 450 4MATIC AMG Line 6인승</h3><div class="img-placeholder img-wrapper gl-car"><span>[사진: GLS 450 4MATIC AMG Line 6인승]</span><img src="images/gls-lineup-amg-6.jpg" alt="GLS 450 4MATIC AMG Line 6인승" class="clickable-img" onerror="this.style.display='none'"></div><ul class="gl-rows"><li><span>외장</span><span>AMG Line</span></li><li><span>내장</span><span>가죽 · 6인승</span></li><li><span>휠</span><span>22″ AMG 멀티 스포크</span></li></ul></div></div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--mb-silver);">※ 이미지는 참고용이며 실제 차량과 다를 수 있습니다. 가격은 확정되는 대로 안내드립니다.</p>
     </section>
 
-    <section class="lineup-section">
+    <section data-m="gls" class="lineup-section">
+      <div class="section-title-wrap"><span class="section-tag">GLS EXTERIOR</span><h2 class="section-title">GLS 외장, 스탠다드와 AMG Line</h2></div>
+      <p style="color:var(--mb-silver);margin:-.5rem 0 1.5rem;line-height:1.7;">GLS 450은 외장을 스탠다드와 AMG Line 두 가지 중에서 고를 수 있습니다. 이미지는 참고용이며 실제 차량과 다를 수 있습니다.</p>
+      <div class="gl-ext">
+        <div><h4>스탠다드</h4><div class="gl-ext-wrap"><div class="img-placeholder img-wrapper gl-ext-img"><span>[사진: 스탠다드 앞모습]</span><img src="images/gls-ext-standard-front.jpg" alt="스탠다드 앞모습" class="clickable-img" onerror="this.style.display='none'"></div><span class="gl-badge"><img src="images/gls-ext-standard-star.jpg" alt="스탠다드 스타 엠블럼" class="clickable-img" onerror="this.parentNode.style.display='none'"></span></div><div class="img-placeholder img-wrapper gl-ext-img"><span>[사진: 스탠다드 뒷모습]</span><img src="images/gls-ext-standard-rear.jpg" alt="스탠다드 뒷모습" class="clickable-img" onerror="this.style.display='none'"></div></div>
+        <div><h4>AMG Line</h4><div class="img-placeholder img-wrapper gl-ext-img"><span>[사진: AMG Line 앞모습]</span><img src="images/gls-ext-amg-front.jpg" alt="AMG Line 앞모습" class="clickable-img" onerror="this.style.display='none'"></div><div class="img-placeholder img-wrapper gl-ext-img"><span>[사진: AMG Line 뒷모습]</span><img src="images/gls-ext-amg-rear.jpg" alt="AMG Line 뒷모습" class="clickable-img" onerror="this.style.display='none'"></div></div>
+      </div>
+    </section>
+
+    <section data-m="gle" class="lineup-section">
+      <div class="section-title-wrap"><span class="section-tag">GLE SUV vs COUPÉ</span><h2 class="section-title">GLE SUV와 쿠페, 무엇이 다를까</h2></div>
+      <div class="cmp-photos">
+        <figure><div class="img-placeholder img-wrapper"><span>[사진: GLE SUV]</span><img src="images/compare-gle-suv.jpg" alt="GLE SUV" class="clickable-img" onerror="this.style.display='none'"></div><figcaption>GLE SUV</figcaption></figure>
+        <figure><div class="img-placeholder img-wrapper"><span>[사진: GLE 쿠페]</span><img src="images/compare-gle-coupe.jpg" alt="GLE 쿠페" class="clickable-img" onerror="this.style.display='none'"></div><figcaption>GLE 쿠페</figcaption></figure>
+      </div>
+      <div class="table-wrapper"><table><thead><tr><th>구분</th><th>GLE 450 SUV</th><th>GLE 450 쿠페</th></tr></thead><tbody><tr><td>외관·기본 휠</td><td>AMG Line · 21″ AMG 5 트윈 스포크</td><td>AMG Line · 21″ AMG 5 트윈 스포크</td></tr><tr><td>시트 소재</td><td>가죽</td><td>나파 가죽</td></tr><tr><td>스티어링 휠</td><td>다기능 스포츠 스티어링 휠 (나파 가죽)</td><td>다기능 스포츠 스티어링 휠 (나파 가죽)</td></tr><tr><td>뒷좌석 전동 조절</td><td>기본</td><td>미적용</td></tr><tr><td>뒷좌석 열선</td><td>기본</td><td>기본</td></tr><tr><td>서스펜션</td><td>에어매틱</td><td>에어매틱</td></tr><tr><td>내장 선택</td><td>블랙(231A) / 비치 브라운·블랙(234A) / 마키아토 베이지·블랙(235A)</td><td>블랙(801A) / 비치 브라운·블랙(804A) / 투톤 화이트·블랙(885A) / 투톤 클래식 레드·블랙(887A)</td></tr></tbody></table></div>
+    </section>
+
+    <section data-m="gls" class="lineup-section">
       <div class="section-title-wrap"><span class="section-tag">GLS SIX OR SEVEN</span><h2 class="section-title">GLS 6인승과 7인승, 무엇이 다를까</h2></div>
-      <div class="feature-split-row" style="margin-bottom:2rem;">
-        <div class="img-placeholder feature-split-img"><span>[사진: GLS 2열 · 3열 실내]</span><img src="images/gls-seats.jpg" alt="GLS 6인승 7인승" class="clickable-img" onerror="this.style.display='none'"></div>
+      <div class="cmp-photos">
+        <figure><div class="img-placeholder img-wrapper "><span>[사진: GLS 7인승 2열]</span><img src="images/gls-seat-7.jpg" alt="GLS 7인승 2열" class="clickable-img" onerror="this.style.display='none'"></div><figcaption>7인승 · 2열 벤치</figcaption></figure>
+        <figure><div class="img-placeholder img-wrapper "><span>[사진: GLS 6인승 2열]</span><img src="images/gls-seat-6.jpg" alt="GLS 6인승 2열" class="clickable-img" onerror="this.style.display='none'"></div><figcaption>6인승 · 2열 독립 시트</figcaption></figure>
+      </div>
+      <div class="feature-split-row" style="margin-bottom:2rem;grid-template-columns:1fr;">
         <div class="feature-split-text">
           <span class="section-tag">SPACE</span>
           <h3>좌석 하나가 바꾸는 실내 활용</h3>
@@ -1328,11 +1407,12 @@
       </style>
 
       <div class="section-title-wrap"><span class="section-tag">DIGITAL COCKPIT</span><h2 class="section-title">실내 디자인과 주요 장비</h2></div>
-      <div class="img-placeholder hero-banner-box"><span>[사진: GLE 실내 슈퍼스크린 와이드 컷]</span><img src="images/cockpit-gle.jpg" alt="GLE 실내" class="clickable-img" onerror="this.style.display='none'"></div>
+      <div class="img-placeholder hero-banner-box" data-m="gle"><span>[사진: GLE 실내 슈퍼스크린 와이드 컷]</span><img src="images/cockpit-gle.jpg" alt="GLE 실내" class="clickable-img" onerror="this.style.display='none'"></div>
+      <div class="img-placeholder hero-banner-box" data-m="gls"><span>[사진: GLS 실내 슈퍼스크린 와이드 컷]</span><img src="images/cockpit-gls.jpg" alt="GLS 실내" class="clickable-img" onerror="this.style.display='none'"></div>
       <div class="tech-wrap">
         <button class="tech-arrow prev" type="button" aria-label="이전">‹</button>
         <div class="tech-track" id="techTrack">
-        <div class="tech-card">
+        <div class="tech-card" data-m="gle">
           <div class="img-placeholder img-wrapper">
             <span>[사진: GLE 실내: 둥근 송풍구와 대화면]</span>
             <img src="images/cockpit-gle-sub.jpg" alt="GLE 실내: 둥근 송풍구와 대화면" class="clickable-img" onerror="this.style.display='none'">
@@ -1340,7 +1420,7 @@
           <h4>GLE 실내: 둥근 송풍구와 대화면</h4>
           <p>12.3인치 화면 3개가 이어진 MBUX 슈퍼스크린과 둥근 송풍구가 실내의 중심을 잡습니다.</p>
         </div>
-        <div class="tech-card">
+        <div class="tech-card" data-m="gls">
           <div class="img-placeholder img-wrapper">
             <span>[사진: GLS 실내: 가로로 넓은 화면]</span>
             <img src="images/cockpit-gls.jpg" alt="GLS 실내: 가로로 넓은 화면" class="clickable-img" onerror="this.style.display='none'">
@@ -1413,8 +1493,10 @@
         (function(){
           var t=document.getElementById('techTrack'),d=document.getElementById('techDots'),
               c=t.children,w=t.closest('.tech-wrap');
-          for(var i=0;i<c.length;i++){d.appendChild(document.createElement('i'));}
-          function step(){return c[1].offsetLeft-c[0].offsetLeft;}
+          function vis(){return [].filter.call(c,function(e){return !e.classList.contains('m-hide');});}
+          function build(){d.innerHTML='';vis().forEach(function(){d.appendChild(document.createElement('i'));});}
+          build();window.techRefresh=function(){build();upd();};
+          function step(){var v=vis();return v.length>1?v[1].offsetLeft-v[0].offsetLeft:1;}
           function upd(){var n=Math.round(t.scrollLeft/step());
             [].forEach.call(d.children,function(e,i){e.className=i===n?'on':'';});}
           t.addEventListener('scroll',upd);upd();
@@ -1426,41 +1508,45 @@
 
     <section class="color-section">
       <div class="section-title-wrap"><span class="section-tag">COLOR CUSTOMIZATION</span><h2 class="section-title">익스테리어 & 인테리어 컬러 선택</h2></div>
+      <div class="body-toggle" data-m="gle" id="bodyToggle"><span>차체 선택</span><button type="button" data-body="suv" class="on">GLE SUV</button><button type="button" data-body="coupe">GLE 쿠페</button></div>
       <div class="color-controls">
         <div class="color-control-group">
           <h3>• 외장 색상 (5가지)</h3>
-          <div class="color-palette" id="ext-palette"><div class="color-chip active" style="background:#eceef0;" data-color-name="폴라 화이트 (솔리드)" data-img-src="images/ext-white.jpg"></div><div class="color-chip" style="background:#101114;" data-color-name="옵시디안 블랙 (메탈릭)" data-img-src="images/ext-black.jpg"></div><div class="color-chip" style="background:#1f3a3d;" data-color-name="다크 페트롤 (솔리드)" data-img-src="images/ext-petrol.jpg"></div><div class="color-chip" style="background:#1d3f7a;" data-color-name="소달라이트 블루 (메탈릭)" data-img-src="images/ext-blue.jpg"></div><div class="color-chip" style="background:#b4b8bd;" data-color-name="하이테크 실버 (메탈릭)" data-img-src="images/ext-silver.jpg"></div></div>
+          <div class="color-palette" id="ext-palette"><div class="color-chip active" style="background:#eceef0;" data-color-name="폴라 화이트 (솔리드)" data-img-src="images/ext-gle-white.jpg" data-img-gle="images/ext-gle-white.jpg" data-img-coupe="images/ext-coupe-white.jpg" data-img-gls="images/ext-gls-white.jpg"></div><div class="color-chip" style="background:#101114;" data-color-name="옵시디안 블랙 (메탈릭)" data-img-src="images/ext-gle-black.jpg" data-img-gle="images/ext-gle-black.jpg" data-img-coupe="images/ext-coupe-black.jpg" data-img-gls="images/ext-gls-black.jpg"></div><div class="color-chip" style="background:#1f3a3d;" data-color-name="다크 페트롤 (솔리드)" data-img-src="images/ext-gle-petrol.jpg" data-img-gle="images/ext-gle-petrol.jpg" data-img-coupe="images/ext-coupe-petrol.jpg" data-img-gls="images/ext-gls-petrol.jpg"></div><div class="color-chip" style="background:#1d3f7a;" data-color-name="소달라이트 블루 (메탈릭)" data-img-src="images/ext-gle-blue.jpg" data-img-gle="images/ext-gle-blue.jpg" data-img-coupe="images/ext-coupe-blue.jpg" data-img-gls="images/ext-gls-blue.jpg"></div><div class="color-chip" style="background:#b4b8bd;" data-color-name="하이테크 실버 (메탈릭)" data-img-src="images/ext-gle-silver.jpg" data-img-gle="images/ext-gle-silver.jpg" data-img-coupe="images/ext-coupe-silver.jpg" data-img-gls="images/ext-gls-silver.jpg"></div></div>
           <div class="selected-color-title" id="ext-selected-text">외장: 폴라 화이트 (솔리드)</div>
         </div>
-        <div class="color-control-group">
-          <h3>• GLE SUV 인테리어 시트</h3>
-          <div class="color-palette" id="int-palette"><div class="color-chip active" style="background:#1a1a1a;" data-color-name="블랙 가죽" data-img-src="images/int-black.jpg"></div><div class="color-chip" style="background:#7b5a3c;" data-color-name="비치 브라운 / 블랙 가죽" data-img-src="images/int-beach.jpg"></div><div class="color-chip" style="background:#d9c9ae;" data-color-name="마키아토 베이지 / 블랙 가죽" data-img-src="images/int-macchiato.jpg"></div></div>
+        <div class="color-control-group" data-m="gle" data-b="suv">
+          <h3>• GLE SUV 인테리어 시트 (가죽)</h3>
+          <div class="color-palette" id="int-palette"><div class="color-chip active" style="background:#1a1a1a;" data-color-name="블랙 가죽" data-img-src="images/int-black.jpg"></div><div class="color-chip" style="background:#7b5a3c;" data-color-name="비치 브라운 / 블랙 가죽" data-img-src="images/int-beach.jpg" data-img-rear="images/int-beach-rear.jpg"></div><div class="color-chip" style="background:#d9c9ae;" data-color-name="마키아토 베이지 / 블랙 가죽" data-img-src="images/int-macchiato.jpg" data-img-rear="images/int-macchiato-rear.jpg"></div></div>
           <div class="selected-color-title" id="int-selected-text">내장: 블랙 가죽</div>
+        </div>
+        <div class="color-control-group" data-m="gle" data-b="coupe">
+          <h3>• GLE 쿠페 인테리어 시트 (나파 가죽)</h3>
+          <div class="color-palette" id="int-palette2"><div class="color-chip" style="background:#1a1a1a;" data-color-name="쿠페 · 블랙 나파 가죽 (801A)" data-img-src="images/int-coupe-801a.jpg" data-img-rear="images/int-coupe-801a-rear.jpg"></div><div class="color-chip" style="background:#7b5a3c;" data-color-name="쿠페 · 비치 브라운 / 블랙 나파 가죽 (804A)" data-img-src="images/int-coupe-804a.jpg" data-img-rear="images/int-coupe-804a-rear.jpg"></div><div class="color-chip" style="background:#e8e8e8;" data-color-name="쿠페 · 투톤 화이트 / 블랙 나파 가죽 (885A)" data-img-src="images/int-coupe-885a.jpg" data-img-rear="images/int-coupe-885a-rear.jpg"></div><div class="color-chip" style="background:#8a1c25;" data-color-name="쿠페 · 투톤 클래식 레드 / 블랙 나파 가죽 (887A)" data-img-src="images/int-coupe-887a.jpg" data-img-rear="images/int-coupe-887a-rear.jpg"></div></div>
+        </div>
+        <div class="color-control-group" data-m="gls">
+          <h3>• GLS 인테리어 시트 (가죽)</h3>
+          <div class="color-palette" id="int-palette3"><div class="color-chip" style="background:#1a1a1a;" data-color-name="GLS · 블랙 가죽 (231A)" data-img-src="images/int-gls-231a.jpg" data-img-rear="images/int-gls-231a-rear.jpg"></div><div class="color-chip" style="background:#7b5a3c;" data-color-name="GLS · 비치 브라운 / 블랙 가죽 (234A)" data-img-src="images/int-gls-234a.jpg" data-img-rear="images/int-gls-234a-rear.jpg"></div><div class="color-chip" style="background:#d9c9ae;" data-color-name="GLS · 마키아토 베이지 / 블랙 가죽 (235A)" data-img-src="images/int-gls-235a.jpg" data-img-rear="images/int-gls-235a-rear.jpg"></div></div>
         </div>
       </div>
       <div class="color-preview-container">
-        <div class="preview-wrapper"><span class="preview-label">익스테리어 뷰</span><div class="img-placeholder color-preview-box"><span>[외장 차량 사진]</span><img id="ext-preview-img" src="images/ext-white.jpg" alt="외장 차량 사진" class="clickable-img" onerror="this.style.display='none'"></div></div>
-        <div class="preview-wrapper"><span class="preview-label">인테리어 뷰</span><div class="img-placeholder color-preview-box"><span>[인테리어 시트 사진]</span><img id="int-preview-img" src="images/int-black.jpg" alt="인테리어 시트 사진" class="clickable-img" onerror="this.style.display='none'"></div></div>
+        <div class="preview-wrapper"><span class="preview-label">익스테리어 뷰</span><div class="img-placeholder color-preview-box"><span>[외장 차량 사진]</span><img id="ext-preview-img" src="images/ext-gle-white.jpg" alt="외장 차량 사진" class="clickable-img" onerror="this.style.display='none'"></div></div>
+        <div class="int-pair">
+          <div class="preview-wrapper"><span class="preview-label">인테리어 · 앞좌석</span><div class="img-placeholder color-preview-box"><span>[앞좌석 사진]</span><img id="int-preview-img" src="images/int-black.jpg" alt="앞좌석 사진" class="clickable-img" onerror="this.style.display='none'"></div></div>
+          <div class="preview-wrapper"><span class="preview-label">인테리어 · 뒷좌석</span><div class="img-placeholder color-preview-box"><span>[뒷좌석 사진]</span><img id="int-preview-rear" src="images/int-black-rear.jpg" alt="뒷좌석 사진" class="clickable-img" onerror="this.style.display='none'"></div></div>
+        </div>
       </div>
       <div class="color-summary-bar">🎨 <strong>최종 선택 조합:</strong> <span id="total-color-text">폴라 화이트 (솔리드) / 블랙 가죽</span></div>
-      <ul class="note-list" style="margin:1rem 0 0"><li>솔리드 도장: 폴라 화이트 · 다크 페트롤 / 메탈릭 도장: 옵시디안 블랙 · 소달라이트 블루 · 하이테크 실버. GLE 쿠페와 GLS도 같은 5가지 색상을 선택할 수 있습니다. 화면과 실제 도장 색상에는 차이가 있을 수 있습니다.</li><li>GLS 내장(가죽): 블랙(231A) · 비치 브라운 / 블랙(234A) · 마키아토 베이지 / 블랙(235A). GLE 쿠페 내장: 블랙 / 비치 브라운·블랙 / 투톤 화이트·블랙 / 클래식 레드·블랙 (나파 가죽).</li></ul>
+      <ul class="note-list" style="margin:1rem 0 0"><li>솔리드 도장: 폴라 화이트 · 다크 페트롤 / 메탈릭 도장: 옵시디안 블랙 · 소달라이트 블루 · 하이테크 실버. GLE 쿠페와 GLS도 같은 5가지 색상을 선택할 수 있습니다. 화면과 실제 도장 색상에는 차이가 있을 수 있습니다.</li><li>GLE SUV · GLS 내장(가죽): 블랙(231A) · 비치 브라운 / 블랙(234A) · 마키아토 베이지 / 블랙(235A). GLE 쿠페 내장(나파 가죽): 블랙(801A) · 비치 브라운 / 블랙(804A) · 투톤 화이트 / 블랙(885A) · 투톤 클래식 레드 / 블랙(887A).</li></ul>
     </section>
 
-    <section>
-      <div class="section-title-wrap"><span class="section-tag">WHEEL DESIGN</span><h2 class="section-title">휠 선택</h2></div>
-      <div class="wheel-grid two">
-        <div class="wheel-card"><div class="img-placeholder img-wrapper wheel-img"><span>[사진: 21인치 AMG 멀티 스포크]</span><img src="images/wheel-21.jpg" alt="21인치 AMG 멀티 스포크 휠" class="clickable-img" onerror="this.style.display='none'"></div><h5>GLE · GLE 쿠페 21″ AMG 휠</h5><span>무료 선택 (기본 5 트윈 스포크)</span></div>
-        <div class="wheel-card"><div class="img-placeholder img-wrapper wheel-img"><span>[사진: 22인치 AMG 5 트윈 스포크]</span><img src="images/wheel-22.jpg" alt="22인치 AMG 5 트윈 스포크 휠" class="clickable-img" onerror="this.style.display='none'"></div><h5>GLE · GLE 쿠페 22″ AMG 5 트윈 스포크</h5><span>선택 · 약 226만원 (참고용)</span></div>
-      </div>
-    </section>
-
-    <section class="lineup-section">
+        <section class="lineup-section">
       <div class="section-title-wrap"><span class="section-tag">STANDARD EQUIPMENT</span><h2 class="section-title">공통 기본 사양</h2></div>
       <div class="grid-common">
         <div class="common-card"><span class="section-tag">DISPLAY & CONNECT</span><h3>디스플레이 · 연결</h3><ul><li>MBUX 슈퍼스크린 (12.3인치 ×3)</li><li>증강현실 헤드업 디스플레이</li><li>내비게이션 · 스마트폰 연동</li></ul></div>
         <div class="common-card"><span class="section-tag">COMFORT RIDE</span><h3>승차감 · 정숙성</h3><ul><li>에어매틱 · 어댑티브 댐핑</li><li>어쿠스틱 컴포트</li><li>열·소음 차단 라미네이티드 글래스</li></ul></div>
         <div class="common-card"><span class="section-tag">LIGHT & ASSIST</span><h3>빛 · 주행 보조</h3><ul><li>디지털 라이트 · 발광 라디에이터 그릴</li><li>드라이빙 어시스턴스 패키지 플러스</li><li>360° 카메라</li></ul></div>
-        <div class="common-card"><span class="section-tag">INTERIOR</span><h3>실내 편의</h3><ul><li>앞좌석 열선·통풍·메모리</li><li>열선 스티어링 휠 · 부메스터 사운드</li><li>파노라믹 선루프 · 파워 클로징</li></ul></div>
+        <div class="common-card"><span class="section-tag">INTERIOR</span><h3>실내 편의</h3><ul><li>앞좌석 열선·통풍·메모리</li><li>열선 스티어링 휠 · 부메스터 사운드</li><li>파노라믹 선루프 · 파워 클로징 · 전동 트렁크</li><li>무선 충전(앞) · 매직 비전 컨트롤</li></ul></div>
       </div>
     </section>
 
@@ -1476,7 +1562,13 @@
       <ul class="note-list" style="margin-top:1rem"><li>국내 인증 연비·출력·차체 치수는 확정되는 대로 업데이트합니다.</li></ul>
     </section>
 
-    <section class="lineup-section">
+        <section data-m="gle" class="lineup-section">
+      <div class="section-title-wrap"><span class="section-tag">GLE SPECIFICATION</span><h2 class="section-title">GLE 450 트림별 상세 사양</h2></div>
+      <div class="table-wrapper"><table><thead><tr><th style="width:26%;">구분</th><th>GLE 450 4MATIC AMG Line</th><th>GLE 450 4MATIC 쿠페</th></tr></thead><tbody><tr><td>엔진</td><td>M256M EVO</td><td>M256M EVO</td></tr><tr><td>서스펜션</td><td>에어매틱</td><td>에어매틱</td></tr><tr><td>외장 패키지</td><td>AMG Line</td><td>AMG Line</td></tr><tr><td>휠</td><td>21인치</td><td>21인치</td></tr><tr><td>스페어 타이어</td><td>타이어핏</td><td>타이어핏</td></tr><tr><td>선루프</td><td>파노라믹 루프</td><td>파노라믹 루프</td></tr><tr><td>헤드램프</td><td>디지털 라이트</td><td>디지털 라이트</td></tr><tr><td>상향등 어시스트 · 앰비언트 라이트</td><td>기본</td><td>기본</td></tr><tr><td>인테리어 패키지</td><td>크롬 패키지</td><td>크롬 패키지</td></tr><tr><td>내장</td><td>가죽, 비치 브라운 / 블랙</td><td>나파 가죽, 비치 브라운 / 블랙</td></tr><tr><td>트림</td><td>앤트러사이트 오픈 포어 오크 우드</td><td>앤트러사이트 오픈 포어 오크 우드</td></tr><tr><td>스티어링 휠</td><td>다기능 스포츠 스티어링 휠, 나파 가죽</td><td>다기능 스포츠 스티어링 휠, 나파 가죽</td></tr><tr><td>열선 스티어링 휠 · 자동 온도 조절</td><td>기본</td><td>기본</td></tr><tr><td>앞좌석 열선·통풍 · 메모리 패키지</td><td>기본</td><td>기본</td></tr><tr><td>뒷좌석 열선</td><td>기본</td><td>기본</td></tr><tr><td>뒷좌석 전동시트</td><td>기본</td><td>—</td></tr><tr><td>안전 보조</td><td>MB.DRIVE 어시스트 · 브레이크 어시스트 · 차선 이탈 방지 · 사각지대 어시스트 플러스 · 뒷좌석 사이드백</td><td>동일</td></tr><tr><td>주차</td><td>360° 카메라 포함 주차 패키지 · PARKTRONIC</td><td>동일</td></tr><tr><td>인포테인먼트</td><td>4세대 MBUX · MBUX 슈퍼스크린 · 내비게이션 · 헤드업 디스플레이 · 조수석 디스플레이</td><td>동일</td></tr><tr><td>사운드</td><td>부메스터 3D 서라운드 사운드</td><td>부메스터 3D 서라운드 사운드</td></tr><tr><td>편의</td><td>스마트폰 통합 패키지 · 앞 무선 충전 · 파워 클로징 · 매직 비전 컨트롤 · 전동 트렁크 · 어쿠스틱 컴포트 패키지</td><td>동일</td></tr></tbody></table></div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--mb-silver);">※ 사양은 본사 정책과 상황에 따라 변경될 수 있습니다.</p>
+    </section>
+
+<section data-m="gls" class="lineup-section">
       <div class="section-title-wrap"><span class="section-tag">GLS SPECIFICATION</span><h2 class="section-title">GLS 450 트림별 상세 사양</h2></div>
       <div class="table-wrapper"><table><thead><tr><th style="width:22%;">구분</th><th>GLS 450<br><span class="spec-sub">7인승</span></th><th>GLS 450<br><span class="spec-sub">6인승</span></th><th>GLS 450 AMG Line<br><span class="spec-sub">7인승</span></th><th>GLS 450 AMG Line<br><span class="spec-sub">6인승</span></th></tr></thead><tbody>
 <tr><td>엔진</td><td colspan="4">M256M EVO</td></tr>
@@ -1571,11 +1663,11 @@
 
   <script>
     // 1. 컬러 커스텀 스크립트
-    let activeExtName = "149U - 폴라 화이트";
-    let activeIntName = "아이보리 베이지 / 블랙 ARTICO (기본)";
+    let activeExtName = "폴라 화이트 (솔리드)";
+    let activeIntName = "블랙 가죽";
 
     const extChips = document.querySelectorAll('#ext-palette .color-chip');
-    const intChips = document.querySelectorAll('#int-palette .color-chip');
+    const intChips = document.querySelectorAll('#int-palette .color-chip, #int-palette2 .color-chip, #int-palette3 .color-chip');
 
     const extSelectedText = document.getElementById('ext-selected-text');
     const intSelectedText = document.getElementById('int-selected-text');
@@ -1583,6 +1675,7 @@
 
     const extPreviewImg = document.getElementById('ext-preview-img');
     const intPreviewImg = document.getElementById('int-preview-img');
+    const intPreviewRear = document.getElementById('int-preview-rear');
 
     extChips.forEach(chip => {
       chip.addEventListener('click', function() {
@@ -1614,6 +1707,8 @@
         if (imgSrc) {
           intPreviewImg.src = imgSrc;
           intPreviewImg.style.display = 'block';
+          const rear = this.getAttribute('data-img-rear');
+          if (rear) { intPreviewRear.src = rear; intPreviewRear.style.display = 'block'; }
         }
 
         updateSummary();
@@ -1642,6 +1737,39 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('active');
     });
+
+    window.__colorReady=true;
+    // 3. GLE / GLS 탭
+    (function(){
+      var btns=document.querySelectorAll('#modelTabs button');
+      var cur='gle',body='suv';
+      function applyColor(reset){
+        var attr=cur==='gls'?'data-img-gls':(body==='coupe'?'data-img-coupe':'data-img-gle');
+        document.querySelectorAll('#ext-palette .color-chip').forEach(function(c){c.setAttribute('data-img-src',c.getAttribute(attr));});
+        var ac=document.querySelector('#ext-palette .color-chip.active'),pi=document.getElementById('ext-preview-img');
+        if(ac&&pi){pi.src=ac.getAttribute('data-img-src');pi.style.display='block';}
+        document.querySelectorAll('[data-b]').forEach(function(e){e.classList.toggle('b-hide',e.dataset.b!==body);});
+        var first=document.querySelector(cur==='gls'?'#int-palette3 .color-chip':(body==='coupe'?'#int-palette2 .color-chip':'#int-palette .color-chip'));
+        if(first&&reset&&window.__colorReady)first.click();
+      }
+      function show(m){
+        cur=m;
+        btns.forEach(function(b){b.classList.toggle('on',b.dataset.tab===m);});
+        document.querySelectorAll('[data-m]').forEach(function(e){e.classList.toggle('m-hide',e.dataset.m!==m);});
+        if(window.techRefresh)window.techRefresh();
+        applyColor(true);
+        var t=document.getElementById('techTrack');if(t)t.scrollLeft=0;
+        try{history.replaceState(null,'','#'+m);}catch(e){}
+      }
+      document.querySelectorAll('#bodyToggle button').forEach(function(b){b.addEventListener('click',function(){
+        body=b.dataset.body;
+        document.querySelectorAll('#bodyToggle button').forEach(function(x){x.classList.toggle('on',x===b);});
+        applyColor(true);
+      });});
+      btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab);});});
+      show(location.hash==='#gls'?'gls':'gle');
+    })();
+
   </script>
 </body>
 </html>
